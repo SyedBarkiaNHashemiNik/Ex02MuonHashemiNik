@@ -3,32 +3,96 @@ import java.util.Scanner;
 class Main {
   
   public static void main(String[] args) {
+    char continueVar = ' ';
+    int limUpper = 0;
+    int limLower = 0;
+    int numOfGuesses = 0;
+    int x, y, z;
+    boolean endApp;
   do {
     Scanner userInput = new Scanner(System.in);
+    System.out.println();
     System.out.println("Welcome to higher or lower! What will you do?");
     System.out.println("-Start Game");
     System.out.println("-Change Settings");
     System.out.println("-End Appplication");
     String gameChoice = userInput.nextLine();
 
-    if (gameChoice.equals("Start Game")) {
-      int random = (int) Math.floor(Math.random()*10) + 1;
+    if (gameChoice.equals("End Application")) {
+      System.out.println("Goodbye!");
+    }
 
-      for (int x = 0; x < 3; x++) {
-        System.out.print("You have 3 guesses left. What is your guess?");
+    endApp = gameChoice.equals("End Application");
+  
+    if (gameChoice.equals("Change Settings")) {
+      System.out.print("Determine the upper limit ");
+      limUpper = userInput.nextInt();
+      System.out.print("Determine the lower limit ");
+      limLower = userInput.nextInt();
+      System.out.print("Determine the number of guesses ");
+      numOfGuesses = userInput.nextInt();
+      
+    }
+    
+    if (limUpper == 0) {
+      limUpper = 10;
+    }
+    
+    if (limLower == 0) {
+      limLower = 1;
+    }
+    
+    if (numOfGuesses == 0) {
+      numOfGuesses = 3;
+    }
+
+    x = limUpper;
+    y = limLower;
+    z = numOfGuesses;
+
+    if (gameChoice.equals("Start Game")) {
+     
+     do {
+       limUpper = x;
+       limLower = y;
+       numOfGuesses = z;
+       
+      int random = (int) Math.floor(Math.random()*limUpper) + limLower;
+      System.out.println();
+       
+      while (numOfGuesses > 0) {
+        System.out.print("You have " + numOfGuesses + " guesses left. What is your guess?");
         int guess = userInput.nextInt();
 
         if (guess == random) {
           System.out.println("Bulls-eye!");
           break;
         }
+        else {
+          if (guess < random)
+            System.out.println ("Higher");   
+          
+
+          if (guess > random)
+            System.out.println ("Lower");
+        }
+
+        numOfGuesses = numOfGuesses - 1;
+        
               
       }
-      
+
+      if (numOfGuesses == 0)
+        System.out.println("Better luck next time");
+
+      System.out.println("Would you like to play this game again?");
+      continueVar = userInput.next().charAt(0);
+      } while (continueVar == 'y');
     }
     
-  }
-  while (continueVar.equals("y"))
+
+    
+  } while (!endApp);
     
 
     
