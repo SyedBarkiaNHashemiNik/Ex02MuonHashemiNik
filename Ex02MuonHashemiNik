@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+class Main {
+  
+  public static void main(String[] args) {
+  do {
+    Scanner userInput = new Scanner(System.in);
+    System.out.println("Welcome to higher or lower! What will you do?");
+    System.out.println("-Start Game");
+    System.out.println("-Change Settings");
+    System.out.println("-End Appplication");
+    String gameChoice = userInput.nextLine();
+
+    if (gameChoice.equals("Start Game")) {
+      int random = (int) Math.floor(Math.random()*10) + 1;
+
+      for (int x = 0; x < 3; x++) {
+        System.out.print("You have 3 guesses left. What is your guess?");
+        int guess = userInput.nextInt();
+
+        if (guess == random) {
+          System.out.println("Bulls-eye!");
+          break;
+        }
+              
+      }
+      
+    }
+    
+  }
+  while (continueVar.equals("y"))
+    
+
+    
+    
+  }
+  
+}
